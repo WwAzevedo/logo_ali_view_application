@@ -68,6 +68,5 @@ web-build/
 .idea/
 
 # Package lockfiles
-package-lock.json
 yarn.lock
 npm-shrinkwrap.json
