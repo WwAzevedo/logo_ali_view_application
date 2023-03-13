@@ -1,0 +1,10 @@
+{
+  "expo": {
+    "name": "logo_ali_view_aplication",
+    "slug": "logo_ali_view_aplication",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
