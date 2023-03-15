@@ -3,21 +3,32 @@ import { StyleSheet } from 'react-native';
 export const styles = StyleSheet.create({
     container: {
       flex: 1,
-      margin: 20,
+      alignItems: 'center',
+      justifyContent: 'center'
     },
-    label: {
+    title: {
+      fontSize: 24,
       fontWeight: 'bold',
-      marginTop: 10,
-      marginBottom: 5,
+      marginBottom: 16
     },
     input: {
-      borderColor: '#ccc',
+      width: '80%',
+      height: 40,
       borderWidth: 1,
-      borderRadius: 5,
-      padding: 10,
-      marginBottom: 10,
+      borderColor: '#ccc',
+      borderRadius: 4,
+      paddingHorizontal: 8,
+      marginBottom: 16
     },
-    multiline: {
-      height: 100,
+    button: {
+      backgroundColor: '#007bff',
+      paddingHorizontal: 16,
+      paddingVertical: 8,
+      borderRadius: 4
     },
+    buttonText: {
+      color: '#fff',
+      fontWeight: 'bold',
+      fontSize: 16
+    }
   });

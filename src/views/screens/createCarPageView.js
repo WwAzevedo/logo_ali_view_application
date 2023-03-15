@@ -19,7 +19,7 @@ const CarForm = () => {
       licensePlate
     };
     try {
-      const response = await axios.post('https://2737-179-55-95-51.sa.ngrok.io/cars', car);
+      const response = await axios.post('https://360e-179-55-95-51.sa.ngrok.io/cars', car);
       console.log(response.data);
       setDriverId('');
       setModel('');

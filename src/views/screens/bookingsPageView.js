@@ -12,7 +12,7 @@ const BookingsScreen = () => {
 
   const getBookings = async () => {
     try {
-      const response = await axios.get('https://2737-179-55-95-51.sa.ngrok.io/bookings');
+      const response = await axios.get('https://360e-179-55-95-51.sa.ngrok.io/bookings');
       setBookings(response.data);
     } catch (error) {
       console.error(error);

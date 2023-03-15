@@ -15,7 +15,7 @@ const ReviewForm = () => {
       driverId
     };
     try {
-      const response = await axios.post('https://2737-179-55-95-51.sa.ngrok.io/reviews', review);
+      const response = await axios.post('https://360e-179-55-95-51.sa.ngrok.io/reviews', review);
       console.log(response.data);
       setRating(0);
       setComment('');
