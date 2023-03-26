@@ -25,19 +25,35 @@ const TripForm = () => {
     },
     (error) => Promise.reject(error)
   );
+  
 
   const handleSubmit = async () => {
+
+    const user = await AsyncStorage.getItem('user');
+    const userInfo = JSON.parse(user)
+
+    const token = await AsyncStorage.getItem('token');
+    const response = await axios.get(`${API_URL}/cars/driver/7`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    const driverId = userInfo.id
+    const carId = response.data[0].id
+
+    
     const trip = {
       driverId,
       departureLocation,
       destinationLocation,
       dateTime,
-      availableSeats,
-      price,
+      availableSeats: parseInt(availableSeats),
+      price: parseFloat(price),
       description,
-      carId,
+      carId
     };
-
+    console.log(trip)
     try {
       const response = await axios.post(`${process.env.API_URL}/trips`, trip);
 
@@ -56,8 +72,6 @@ const TripForm = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.label}>Driver ID:</Text>
-      <TextInput style={styles.input} value={driverId} onChangeText={setDriverId} />
 
       <Text style={styles.label}>Departure Location:</Text>
       <TextInput style={styles.input} value={departureLocation} onChangeText={setDepartureLocation} />
@@ -77,12 +91,12 @@ const TripForm = () => {
       <Text style={styles.label}>Description:</Text>
       <TextInput style={[styles.input, styles.multiline]} multiline={true} numberOfLines={4} value={description} onChangeText={setDescription} />
 
-      <Text style={styles.label}>Car ID:</Text>
-      <TextInput style={styles.input} value={carId} onChangeText={setCarId} />
-
       <Button title="Submit" onPress={handleSubmit} />
     </View>
   );
 };
+
+//<Text style={styles.label}>Car ID:</Text>
+//<TextInput style={styles.input} value={carId} onChangeText={setCarId} />
 
 export default TripForm;
