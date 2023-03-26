@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, Button } from 'react-native';
 import axios from 'axios';
 import { styles } from '../components/userLogonStyleSheet';
+import { API_URL} from '@env';
 
 const UserForm = () => {
   const [name, setName] = useState('');
@@ -18,7 +19,7 @@ const UserForm = () => {
     };
     console.log(user)
     try {
-      const response = await axios.post('https://5a83-186-229-196-110.sa.ngrok.io/users', user);
+      const response = await axios.post(`${process.env.API_URL}/users`, user);
       console.log(response.data);
       setName('');
       setEmail('');

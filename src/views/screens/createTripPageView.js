@@ -3,6 +3,7 @@ import { View, Text, TextInput, Button } from 'react-native';
 import { styles } from '../components/createTripStyleSheet';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { API_URL} from '@env';
 
 const TripForm = () => {
   const [driverId, setDriverId] = useState('');
@@ -38,7 +39,7 @@ const TripForm = () => {
     };
 
     try {
-      const response = await axios.post('https://5a83-186-229-196-110.sa.ngrok.io/trips', trip);
+      const response = await axios.post(`${process.env.API_URL}/trips`, trip);
 
       setDriverId('');
       setDepartureLocation('');

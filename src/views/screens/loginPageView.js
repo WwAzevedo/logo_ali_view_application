@@ -4,8 +4,7 @@ import axios from 'axios';
 import { styles } from '../components/loginPageStyleSheet';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
-
-const API_URL = 'https://5a83-186-229-196-110.sa.ngrok.io/login';
+import { API_URL} from '@env';
 
 const LoginScreen = () =>  {
   const navigation = useNavigation();
@@ -14,7 +13,7 @@ const LoginScreen = () =>  {
 
   const handleLogin = async () => {
     try {
-      const response = await axios.post(API_URL, { email, password });
+      const response = await axios.post(`${process.env.API_URL}/login`, { email, password });
       const { token, user } = response.data;
       // Armazena o token e o usuário no armazenamento local
       await AsyncStorage.setItem('token', token);

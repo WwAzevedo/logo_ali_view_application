@@ -26,6 +26,7 @@ function HomeTabs() {
       <Tab.Screen name="Bookings" component={BookingsScreen} />
     </Tab.Navigator>
   );
+  
 }
 
 function App() {

@@ -3,6 +3,7 @@ import { Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { styles } from '../components/createCarStyleSheet';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { API_URL} from '@env';
 
 const CarForm = () => {
   const [driverId, setDriverId] = useState('');
@@ -31,7 +32,7 @@ const CarForm = () => {
       licensePlate
     };
     try {
-      const response = await axios.post('https://5a83-186-229-196-110.sa.ngrok.io/cars', car);
+      const response = await axios.post(`${process.env.API_URL}/cars`, car);
       console.log(response.data);
       setDriverId('');
       setModel('');

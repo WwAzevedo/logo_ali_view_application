@@ -3,6 +3,7 @@ import { View, Text, FlatList } from 'react-native';
 import axios from 'axios';
 import { styles } from '../components/bookingPageStyleSheet';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { API_URL} from '@env';
 
 const BookingsScreen = () => {
   const [bookings, setBookings] = useState([]);
@@ -24,7 +25,7 @@ const BookingsScreen = () => {
 
   const getBookings = async () => {
     try {
-      const response = await axios.get('https://5a83-186-229-196-110.sa.ngrok.io/bookings');
+      const response = await axios.get(`${process.env.API_URL}/bookings`);
       setBookings(response.data);
     } catch (error) {
       console.error(error);
