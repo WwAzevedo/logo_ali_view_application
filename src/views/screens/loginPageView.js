@@ -3,10 +3,12 @@ import { View, TextInput, Button, Alert } from 'react-native';
 import axios from 'axios';
 import { styles } from '../components/loginPageStyleSheet';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useNavigation } from '@react-navigation/native';
 
-const API_URL = 'https://360e-179-55-95-51.sa.ngrok.io/login';
+const API_URL = 'https://5a83-186-229-196-110.sa.ngrok.io/login';
 
 const LoginScreen = () =>  {
+  const navigation = useNavigation();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -14,13 +16,11 @@ const LoginScreen = () =>  {
     try {
       const response = await axios.post(API_URL, { email, password });
       const { token, user } = response.data;
-        console.log(response.data)
       // Armazena o token e o usuário no armazenamento local
       await AsyncStorage.setItem('token', token);
       await AsyncStorage.setItem('user', JSON.stringify(user));
-
       // Navega para a tela de boas-vindas
-      //navigation.navigate('Welcome');
+      navigation.navigate('Logo Ali');
     } catch (err) {
       console.error(err);
       Alert.alert('Erro', 'Email ou senha incorretos');

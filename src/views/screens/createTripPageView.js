@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, Button } from 'react-native';
 import { styles } from '../components/createTripStyleSheet';
 import axios from 'axios';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const TripForm = () => {
   const [driverId, setDriverId] = useState('');
@@ -12,6 +13,17 @@ const TripForm = () => {
   const [price, setPrice] = useState('');
   const [description, setDescription] = useState('');
   const [carId, setCarId] = useState('');
+
+  axios.interceptors.request.use(
+    async (config) => {
+      const token = await AsyncStorage.getItem('token');
+      if (token) {
+        config.headers.Authorization = `Bearer ${token}`;
+      }
+      return config;
+    },
+    (error) => Promise.reject(error)
+  );
 
   const handleSubmit = async () => {
     const trip = {
@@ -26,8 +38,7 @@ const TripForm = () => {
     };
 
     try {
-      const response = await axios.post('https://360e-179-55-95-51.sa.ngrok.io/trips', trip);
-      console.log(response.data);
+      const response = await axios.post('https://5a83-186-229-196-110.sa.ngrok.io/trips', trip);
 
       setDriverId('');
       setDepartureLocation('');

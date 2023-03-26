@@ -16,18 +16,14 @@ const Tab = createMaterialBottomTabNavigator();
 function HomeTabs() {
   return (
     <Tab.Navigator
-      initialRouteName="Login"
+      initialRouteName="Trips"
       activeColor="#ffffff"
       inactiveColor="#3e2465"
       barStyle={{ backgroundColor: '#007bff' }}
-
     >
-      <Tab.Screen name="Reviews" component={ReviewForm} />
       <Tab.Screen name="Trips" component={TripForm} />
       <Tab.Screen name="Insert a Car" component={CarForm} />
-      <Tab.Screen name="Logon" component={UserForm} />
       <Tab.Screen name="Bookings" component={BookingsScreen} />
-      <Tab.Screen name="Login" component={LoginScreen} />
     </Tab.Navigator>
   );
 }
@@ -35,8 +31,16 @@ function HomeTabs() {
 function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator 
+        initialRouteName="Login"
+      >
+        <Tab.Screen name="Reviews" component={ReviewForm} />
+        <Tab.Screen name="Trips" component={TripForm} />
+        <Tab.Screen name="Insert a Car" component={CarForm} />
+        <Tab.Screen name="Bookings" component={BookingsScreen} />
         <Stack.Screen name="Logo Ali" component={HomeTabs} />
+        <Tab.Screen name="Login" component={LoginScreen} />
+        <Tab.Screen name="Logon" component={UserForm} />
       </Stack.Navigator>
     </NavigationContainer>
   );
