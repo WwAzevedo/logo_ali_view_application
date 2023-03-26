@@ -3,6 +3,7 @@ import { View, Text, TextInput, Button } from 'react-native';
 import axios from 'axios';
 import { styles } from '../components/createReviewStyleSheet';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { API_URL} from '@env';
 
 const ReviewForm = () => {
   const [rating, setRating] = useState(0);
@@ -27,7 +28,7 @@ const ReviewForm = () => {
       driverId
     };
     try {
-      const response = await axios.post('https://5a83-186-229-196-110.sa.ngrok.io/reviews', review);
+      const response = await axios.post(`${process.env.API_URL}/reviews`, review);
       console.log(response.data);
       setRating(0);
       setComment('');

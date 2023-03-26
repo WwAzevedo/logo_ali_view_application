@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, FlatList } from 'react-native';
+import { ListItem } from 'react-native-elements';
 import axios from 'axios';
-import { styles } from '../components/bookingPageStyleSheet';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { styles } from '../components/getTripPageStryleSheet';
 import { API_URL} from '@env';
 
-const BookingsScreen = () => {
-  const [bookings, setBookings] = useState([]);
+const TripsList = () => {
+  const [trips, setTrips] = useState([]);
 
   axios.interceptors.request.use(
     async (config) => {
@@ -20,36 +21,39 @@ const BookingsScreen = () => {
   );
 
   useEffect(() => {
-    getBookings();
+    getTrips();
   }, []);
 
-  const getBookings = async () => {
+
+
+  const getTrips = async () => {
     try {
-      const response = await axios.get(`${process.env.API_URL}/bookings`);
-      setBookings(response.data);
+      const response = await axios.get(`${process.env.API_URL}/trips`);
+      setTrips(response.data);
     } catch (error) {
       console.error(error);
     }
   };
 
-  const renderItem = ({ item }) => (
+
+  const renderTrip = ({ item }) => (
     <View style={styles.item}>
-      <Text>Trip ID: {item.trip_id}</Text>
-      <Text>User ID: {item.user_id}</Text>
-      <Text>Number of seats booked: {item.num_seats_booked}</Text>
-      <Text>Total price: {item.total_price}</Text>
+      <Text>Embarque: {item.departure_location}</Text>
+      <Text>Destino: {item.destination_location}</Text>
+      <Text>Partida: {item.date_time}</Text>
+      <Text>Total price: {item.price}</Text>
     </View>
   );
 
   return (
     <View style={styles.container}>
       <FlatList
-        data={bookings}
-        renderItem={renderItem}
-        keyExtractor={(item) => item.id.toString()}
+        data={trips}
+        keyExtractor={item => item.id.toString()}
+        renderItem={renderTrip}
       />
     </View>
   );
 };
 
-export default BookingsScreen;
+export default TripsList;
