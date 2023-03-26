@@ -37,13 +37,12 @@ const TripsList = () => {
 
 
   const renderTrip = ({ item }) => (
-    <ListItem bottomDivider>
-      <ListItem.Content>
-        <ListItem.Title>{item.startLocation} - {item.endLocation}</ListItem.Title>
-        <ListItem.Subtitle>{item.startTime}</ListItem.Subtitle>
-      </ListItem.Content>
-      <ListItem.Chevron />
-    </ListItem>
+    <View style={styles.item}>
+      <Text>Embarque: {item.departure_location}</Text>
+      <Text>Destino: {item.destination_location}</Text>
+      <Text>Partida: {item.date_time}</Text>
+      <Text>Total price: {item.price}</Text>
+    </View>
   );
 
   return (
