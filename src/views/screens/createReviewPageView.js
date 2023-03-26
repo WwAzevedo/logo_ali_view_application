@@ -2,11 +2,23 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, Button } from 'react-native';
 import axios from 'axios';
 import { styles } from '../components/createReviewStyleSheet';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const ReviewForm = () => {
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState('');
   const [driverId, setDriverId] = useState('');
+
+  axios.interceptors.request.use(
+    async (config) => {
+      const token = await AsyncStorage.getItem('token');
+      if (token) {
+        config.headers.Authorization = `Bearer ${token}`;
+      }
+      return config;
+    },
+    (error) => Promise.reject(error)
+  );
 
   const handleSubmit = async () => {
     const review = {
@@ -15,7 +27,7 @@ const ReviewForm = () => {
       driverId
     };
     try {
-      const response = await axios.post('https://360e-179-55-95-51.sa.ngrok.io/reviews', review);
+      const response = await axios.post('https://5a83-186-229-196-110.sa.ngrok.io/reviews', review);
       console.log(response.data);
       setRating(0);
       setComment('');

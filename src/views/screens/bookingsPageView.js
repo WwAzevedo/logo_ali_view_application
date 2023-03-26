@@ -2,9 +2,21 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, FlatList } from 'react-native';
 import axios from 'axios';
 import { styles } from '../components/bookingPageStyleSheet';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const BookingsScreen = () => {
   const [bookings, setBookings] = useState([]);
+
+  axios.interceptors.request.use(
+    async (config) => {
+      const token = await AsyncStorage.getItem('token');
+      if (token) {
+        config.headers.Authorization = `Bearer ${token}`;
+      }
+      return config;
+    },
+    (error) => Promise.reject(error)
+  );
 
   useEffect(() => {
     getBookings();
@@ -12,7 +24,7 @@ const BookingsScreen = () => {
 
   const getBookings = async () => {
     try {
-      const response = await axios.get('https://360e-179-55-95-51.sa.ngrok.io/bookings');
+      const response = await axios.get('https://5a83-186-229-196-110.sa.ngrok.io/bookings');
       setBookings(response.data);
     } catch (error) {
       console.error(error);

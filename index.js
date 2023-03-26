@@ -1,10 +1,4 @@
 import { registerRootComponent } from 'expo';
-
-import logonPageView from './src/views/screens/logonPageView';
-import bookingsPageView from './src/views/screens/bookingsPageView';
-import createCarPageView from './src/views/screens/createCarPageView';
-import createTripPageView from './src/views/screens/createTripPageView';
-import createReviewPageView from './src/views/screens/createTripPageView';
 import homeScreenPageView from './src/views/screens/homeScreenPageView';
 
 
@@ -13,7 +7,3 @@ import homeScreenPageView from './src/views/screens/homeScreenPageView';
 // the environment is set up appropriately
 
 registerRootComponent(homeScreenPageView);
-//registerRootComponent(bookingsPageView);
-//registerRootComponent(createCarPageView);
-//registerRootComponent(createTripPageView);
-//registerRootComponent(createReviewPageView);

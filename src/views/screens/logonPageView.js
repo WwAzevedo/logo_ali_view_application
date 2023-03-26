@@ -18,7 +18,7 @@ const UserForm = () => {
     };
     console.log(user)
     try {
-      const response = await axios.post('https://360e-179-55-95-51.sa.ngrok.io/users', user);
+      const response = await axios.post('https://5a83-186-229-196-110.sa.ngrok.io/users', user);
       console.log(response.data);
       setName('');
       setEmail('');
