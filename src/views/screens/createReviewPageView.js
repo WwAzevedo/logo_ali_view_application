@@ -3,7 +3,6 @@ import { View, Text, TextInput, Button } from 'react-native';
 import axios from 'axios';
 import { styles } from '../components/createReviewStyleSheet';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { API_URL} from '@env';
 
 const ReviewForm = () => {
   const [rating, setRating] = useState(0);

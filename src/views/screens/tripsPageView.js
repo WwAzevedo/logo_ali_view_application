@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, FlatList } from 'react-native';
-import { ListItem } from 'react-native-elements';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { styles } from '../components/getTripPageStryleSheet';
-import { API_URL} from '@env';
 
 const TripsList = () => {
   const [trips, setTrips] = useState([]);

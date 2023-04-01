@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, Button } from 'react-native';
 import axios from 'axios';
 import { styles } from '../components/userLogonStyleSheet';
-import { API_URL} from '@env';
 
 const UserForm = () => {
   const [name, setName] = useState('');
