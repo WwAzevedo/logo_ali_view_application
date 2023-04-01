@@ -3,7 +3,6 @@ import { View, Text, TextInput, Button } from 'react-native';
 import { styles } from '../components/createTripStyleSheet';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { API_URL} from '@env';
 
 const TripForm = () => {
   const [driverId, setDriverId] = useState('');
@@ -33,7 +32,7 @@ const TripForm = () => {
     const userInfo = JSON.parse(user)
 
     const token = await AsyncStorage.getItem('token');
-    const response = await axios.get(`${API_URL}/cars/driver/7`, {
+    const response = await axios.get(`${process.env.API_URL}/cars/driver/${userInfo.id}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -53,7 +52,7 @@ const TripForm = () => {
       description,
       carId
     };
-    console.log(trip)
+
     try {
       const response = await axios.post(`${process.env.API_URL}/trips`, trip);
 
@@ -65,6 +64,7 @@ const TripForm = () => {
       setPrice('');
       setDescription('');
       setCarId('');
+
     } catch (error) {
       console.error(error);
     }

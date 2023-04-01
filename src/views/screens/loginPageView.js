@@ -4,7 +4,7 @@ import axios from 'axios';
 import { styles } from '../components/loginPageStyleSheet';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
-import { API_URL} from '@env';
+
 
 const LoginScreen = () =>  {
   const navigation = useNavigation();
@@ -25,6 +25,7 @@ const LoginScreen = () =>  {
       Alert.alert('Erro', 'Email ou senha incorretos');
     }
   };
+  console.log(process.env.API_URL)
 
   return (
     <View style={styles.container}>
