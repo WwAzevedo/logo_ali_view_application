@@ -25,7 +25,6 @@ const LoginScreen = () =>  {
       Alert.alert('Erro', 'Email ou senha incorretos');
     }
   };
-  console.log(process.env.API_URL)
 
   return (
     <View style={styles.container}>
