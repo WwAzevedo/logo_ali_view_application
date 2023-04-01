@@ -23,6 +23,19 @@ const CarForm = () => {
   );
 
   const handleSubmit = async () => {
+
+    const user = await AsyncStorage.getItem('user');
+    const userInfo = JSON.parse(user)
+
+    const token = await AsyncStorage.getItem('token');
+    const response = await axios.get(`${process.env.API_URL}/cars/driver/${userInfo.id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    const driverId = userInfo.id
+
     const car = {
       driverId,
       model,
@@ -46,12 +59,7 @@ const CarForm = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Cadastre um novo carro</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="Driver ID"
-        value={driverId}
-        onChangeText={(text) => setDriverId(text)}
-      />
+
       <TextInput
         style={styles.input}
         placeholder="Model"
