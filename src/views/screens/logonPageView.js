@@ -16,7 +16,7 @@ const UserForm = () => {
       password,
       isDriver
     };
-    console.log(user)
+
     try {
       const response = await axios.post(`${process.env.API_URL}/users`, user);
       console.log(response.data);
