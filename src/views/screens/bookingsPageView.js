@@ -3,7 +3,6 @@ import { View, Text, FlatList } from 'react-native';
 import axios from 'axios';
 import { styles } from '../components/bookingPageStyleSheet';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { API_URL} from '@env';
 
 const BookingsScreen = () => {
   const [bookings, setBookings] = useState([]);
