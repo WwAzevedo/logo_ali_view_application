@@ -15,9 +15,11 @@ const LoginScreen = () =>  {
     try {
       const response = await axios.post(`${process.env.API_URL}/login`, { email, password });
       const { token, user } = response.data;
+
       // Armazena o token e o usuário no armazenamento local
       await AsyncStorage.setItem('token', token);
       await AsyncStorage.setItem('user', JSON.stringify(user));
+      
       // Navega para a tela de boas-vindas
       navigation.navigate('Logo Ali');
     } catch (err) {

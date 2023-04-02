@@ -32,11 +32,7 @@ const TripForm = () => {
     const userInfo = JSON.parse(user)
 
     const token = await AsyncStorage.getItem('token');
-    const response = await axios.get(`${process.env.API_URL}/cars/driver/${userInfo.id}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const response = await axios.get(`${process.env.API_URL}/cars/driver/${userInfo.id}`);
 
     const driverId = userInfo.id
     const carId = response.data[0].id
