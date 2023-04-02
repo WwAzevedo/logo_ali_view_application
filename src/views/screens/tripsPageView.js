@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, FlatList } from 'react-native';
+import { View, Text, FlatList, TouchableOpacity } from 'react-native';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { styles } from '../components/getTripPageStryleSheet';
+import { useNavigation } from '@react-navigation/native';
 
 const TripsList = () => {
   const [trips, setTrips] = useState([]);
+  const navigation = useNavigation();
 
   axios.interceptors.request.use(
     async (config) => {
@@ -33,14 +35,20 @@ const TripsList = () => {
     }
   };
 
+  const handleTripPress = (item) => {
+    navigation.navigate('Get Trip', { item: item });
+  };
 
   const renderTrip = ({ item }) => (
-    <View style={styles.item}>
+    <TouchableOpacity
+      style={styles.item}
+      onPress={() => handleTripPress(item)}
+    >
       <Text>Embarque: {item.departure_location}</Text>
       <Text>Destino: {item.destination_location}</Text>
       <Text>Partida: {item.date_time}</Text>
       <Text>Total price: {item.price}</Text>
-    </View>
+    </TouchableOpacity>
   );
 
   return (

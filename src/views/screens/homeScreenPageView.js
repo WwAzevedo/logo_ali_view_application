@@ -8,7 +8,8 @@ import ReviewForm from '../screens/createReviewPageView';
 import TripForm from '../screens/createTripPageView';
 import UserForm from '../screens/logonPageView';
 import LoginScreen from '../screens/loginPageView';
-import TripScreen from '../screens/tripsPageView';
+import TripsScreen from '../screens/tripsPageView';
+import TripScreen from '../screens/tripPageView';
 
 const Stack = createNativeStackNavigator();
 const Tab = createMaterialBottomTabNavigator();
@@ -24,7 +25,7 @@ function HomeTabs() {
       <Tab.Screen name="Trips" component={TripForm} />
       <Tab.Screen name="Insert a Car" component={CarForm} />
       <Tab.Screen name="Bookings" component={BookingsScreen} />
-      <Tab.Screen name="Get Trips" component={TripScreen} />
+      <Tab.Screen name="Get Trips" component={TripsScreen} />
     </Tab.Navigator>
   );
 }
@@ -37,7 +38,8 @@ function App() {
       >
         <Tab.Screen name="Reviews" component={ReviewForm} />
         <Tab.Screen name="Create Trips" component={TripForm} />
-        <Tab.Screen name="Get Trips" component={TripScreen} />
+        <Tab.Screen name="Get Trips" component={TripsScreen} />
+        <Tab.Screen name="Get Trip" component={TripScreen} />
         <Tab.Screen name="Insert a Car" component={CarForm} />
         <Tab.Screen name="Bookings" component={BookingsScreen} />
         <Stack.Screen name="Logo Ali" component={HomeTabs} />
